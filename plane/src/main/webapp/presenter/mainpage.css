@@ -1,0 +1,36 @@
+/*
+Author: Radosław Ziembiński
+Poznań Universtiy of Technolgy, 2014
+Laboratories: Technologie programistyczne systemy internetowe - teaching materials
+*/
+
+.results tr > td > div[crashed="false"] {
+	width: 300px;
+	background-color: green;
+	color: white;
+}
+
+.results tr > td > div[crashed="true"] {
+	width: 300px;
+	background: red;
+	color: white;
+}
+
+.results tr > td > div {
+	width: 300px;
+}
+
+.controls button {
+	width: 80px;
+}
+#view3d{
+	float:left;
+}
+#chart{
+	
+	width:600px;
+	float:right;
+	height:400px;
+	border-style:solid;
+	border-width:1px;
+}
