@@ -10,6 +10,7 @@
 <title>Insert title here</title>
 <link href="presenter/mainpage.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="presenter/jquery.js"></script>
+<script type="text/javascript" src="presenter/jquery.validate.min.js"></script>
 <script type="text/javascript" src="presenter/three/three.js"></script>
 <script type="text/javascript" src="presenter/storage.js"></script>
 <script type="text/javascript" src="presenter/changes.js"></script>
@@ -30,11 +31,14 @@
 	
 	<button class="btn btn-primary btn-lg" id="startBtn">Start</button>
 	<button class="btn btn-primary btn-lg" id="stopBtn">Stop</button>
-	
+	<button class="btn btn-primary btn-lg" id="backViewBtn">BackView</button>
+	<button class="btn btn-primary btn-lg" id="satelliteViewBtn">SatelliteView</button>
+	<button class="btn btn-primary btn-lg" id="sideViewBtn">SideView</button>
 	<br><br>
 	<div id="view3d"></div>
 	<div id="chart">
-		<canvas id="mycanvas" width="600" height="400"></canvas>
+		<canvas id="mycanvas0" width="600" height="198"></canvas>
+		<canvas id="mycanvas1" width="600" height="198"></canvas>
 	</div>
 	<div style="clear: both"></div>
 	<table class="results">
@@ -119,7 +123,6 @@
 
 		var height = land.getValue(plane.pos.x, plane.pos.z);
 		plane.pos.y = height + 1000.0;
-		initPlanPosition(plane.pos);
 		var camera, scene, renderer, objects = {};
 
 		scene = new THREE.Scene();
@@ -373,15 +376,35 @@
 					<h4 class="modal-title" id="myModalLabel">Configuration</h4>
 				</div>
 				<div class="modal-body">
-
+					<form id="cfgFrom">
 
 					<div class="col-md-6 form-group">
 						<label for="velX">Velocity X</label>
-						<input class="form-control" id="velX" type="number" />
+						<input class="form-control" id="velX" required value="0" type="number" />
 					</div>
 					<div class="col-md-6 form-group">
-						<label for="velY">Velocity Y</label> 
-						<input class="form-control" id="velY" type="number" />
+						<label for="posX">Position X</label> 
+						<input class="form-control" id="posX" value="0" type="number" />
+					</div>
+					<span class="clearfix">
+					
+					<div class="col-md-6 form-group">
+						<label for="velY">Velocity Y</label>
+						<input class="form-control" id="velY" value="0" type="number" />
+					</div>
+					<div class="col-md-6 form-group">
+						<label for="posY">Position Y</label> 
+						<input class="form-control" id="posY" value="0" type="number" />
+					</div>
+					<span class="clearfix">
+					
+					<div class="col-md-6 form-group">
+						<label for="velZ">Velocity Z</label>
+						<input class="form-control" id="velZ" value="0" type="number" />
+					</div>
+					<div class="col-md-6 form-group">
+						<label for="posZ">Position Z</label> 
+						<input class="form-control" id="posZ" value="0" type="number" />
 					</div>
 					<span class="clearfix">
 
@@ -398,7 +421,7 @@
 						 </select>
 					</div>
 					<span class="clearfix">
-					
+					</form>
 
 				</div>
 				<div class="modal-footer">

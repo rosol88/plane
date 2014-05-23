@@ -10,6 +10,7 @@ $( window ).load(function() {
 		}
 		cfg.date=new Date();
 		historyManager.add(cfg);
+		resetSim();
 		initPlaneParameters(cfg);
 		$('#myModal').modal('hide');
 		startAnimation();
@@ -20,6 +21,18 @@ $( window ).load(function() {
 	$('#stopBtn').on('click',function(){
 		stopAnim();
 	});
+	$('#backViewBtn').on('click',function(){
+		backView();
+	});
+	$('#satelliteViewBtn').on('click',function(){
+		satelliteView();
+	});
+	$('#sideViewBtn').on('click',function(){
+		sideView();
+	});
+//	$('#resetBtn').on('click',function(){
+//		resetSim();
+//	});
 	$('#historyCmb').on('focus',function(){
 		historyManager.loadCombo($('#historyCmb'));
 	});
@@ -28,6 +41,16 @@ $( window ).load(function() {
 	});
 	$('#allHistoryCmb').on('change',onCfgSelect);
 });
+
+function resetSim(){
+	plane = new Plane();
+	land = new Land(2245, 10000, 10000, 5);
+	autopilot = new Autopilot();
+	autopilot.setup(plane, land, new THREE.Vector3(100000, 0.0, -50000));
+
+	height = land.getValue(plane.pos.x, plane.pos.z);
+	plane.pos.y =1000.0;
+}
 function onCfgSelect(e){
 	var data=$(e.target).find(':selected').data('json');
 	for(var i in data){
@@ -44,39 +67,44 @@ var cameraTranslation={
 	y:0.0,
 	z:0.0
 };
-defaultView();
+backView();
 function translateCamera(camera){
 	camera.position.set(plane.pos.x - cameraTranslation.x, plane.pos.y +cameraTranslation.y, plane.pos.z+cameraTranslation.z);
 };
-function sateliteView(){
+function satelliteView(){
 	cameraTranslation={
 			x:0.0,
 			y:+5000.0,
 			z:0.0
 		};
 }
-function defaultView(){
+function backView(){
 	cameraTranslation={
 		x:-4000.0,
 		y:-200.0,
 		z:0.0
 	};
 }
-
+function sideView(){
+	cameraTranslation={
+		x:0.0,
+		y:-200.0,
+		z:-3000.0
+	};
+}
 function initPlaneParameters(cfg){
 	if(!$.isEmptyObject(cfg.velX)){
 		plane.vel.x=parseFloat(cfg.velX);
 	}
 }
-function initPlanPosition(pos){
-	
-}
 var stopAnimation=true;
 function stopAnim(){
 	stopAnimation=true;
-	smoothie.stop();
+	for(var i=0;i<smoothie.length;i++)
+		smoothie[i].stop();
 }
 function startAnimation(){
 	stopAnimation=false;
-	smoothie.start();
+	for(var i=0;i<smoothie.length;i++)
+		smoothie[i].start();
 }
