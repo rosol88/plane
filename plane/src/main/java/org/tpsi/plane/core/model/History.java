@@ -9,8 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class History
-{
+public class History {
     @Id
     @GeneratedValue
     private Long id;
@@ -18,7 +17,7 @@ public class History
     private Date date;
 
     @ManyToOne
-    @JoinColumn( name = "user_id" )
+    @JoinColumn(name = "user_id")
     private User user;
 
     private double velX;
@@ -31,96 +30,78 @@ public class History
 
     private double posY;
 
-    private double pozZ;
+    private double posZ;
 
-    public Long getId()
-    {
-        return id;
+    public Long getId() {
+	return id;
     }
 
-    public void setId( Long id )
-    {
-        this.id = id;
+    public void setId(Long id) {
+	this.id = id;
     }
 
-    public User getUser()
-    {
-        return user;
+    public User getUser() {
+	return user;
     }
 
-    public void setUser( User user )
-    {
-        this.user = user;
+    public void setUser(User user) {
+	this.user = user;
     }
 
-    public double getVelX()
-    {
-        return velX;
+    public double getVelX() {
+	return velX;
     }
 
-    public void setVelX( double velX )
-    {
-        this.velX = velX;
+    public void setVelX(double velX) {
+	this.velX = velX;
     }
 
-    public double getVelY()
-    {
-        return velY;
+    public double getVelY() {
+	return velY;
     }
 
-    public void setVelY( double velY )
-    {
-        this.velY = velY;
+    public void setVelY(double velY) {
+	this.velY = velY;
     }
 
-    public double getVelZ()
-    {
-        return velZ;
+    public double getVelZ() {
+	return velZ;
     }
 
-    public void setVelZ( double velZ )
-    {
-        this.velZ = velZ;
+    public void setVelZ(double velZ) {
+	this.velZ = velZ;
     }
 
-    public double getPosX()
-    {
-        return posX;
+    public double getPosX() {
+	return posX;
     }
 
-    public void setPosX( double posX )
-    {
-        this.posX = posX;
+    public void setPosX(double posX) {
+	this.posX = posX;
     }
 
-    public double getPosY()
-    {
-        return posY;
+    public double getPosY() {
+	return posY;
     }
 
-    public void setPosY( double posY )
-    {
-        this.posY = posY;
+    public void setPosY(double posY) {
+	this.posY = posY;
     }
 
-    public double getPozZ()
-    {
-        return pozZ;
+    public Date getDate() {
+	return date;
     }
 
-    public void setPozZ( double pozZ )
-    {
-        this.pozZ = pozZ;
+    public void setDate(Date date) {
+	this.date = date;
     }
 
-    public Date getDate()
-    {
-        return date;
+    public double getPosZ() {
+	return posZ;
     }
 
-    public void setDate( Date date )
-    {
-        this.date = date;
+    public void setPosZ(double posZ) {
+	this.posZ = posZ;
     }
 
 }

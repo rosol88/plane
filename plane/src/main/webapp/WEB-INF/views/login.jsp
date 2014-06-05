@@ -10,8 +10,28 @@
 <script type="text/javascript" src="presenter/bCrypt.js"></script>
 <script type="text/javascript" src="presenter/login.js"></script>
 <script type="text/javascript" src="presenter/md5.js"></script>
+
+<link rel="stylesheet" type="text/css"
+	href="presenter/bootstrap/css/bootstrap.min.css">
+<script type="text/javascript"
+	src="presenter/bootstrap/js/bootstrap.min.js"></script>
+<style>
+.html,body{
+	margin:20px;
+}
+.form-control {
+    width:300px;
+}
+</style>
+
 <c:url value="/login" var="loginUrl"/>
-<form action="${loginUrl}" method="post">       
+
+
+<form action="${loginUrl}" method="post" role="form">   
+
+	<a href="/Documentation/documentation">Documentation</a><br>
+	<a href="plane">Plane simulator</a>    <br>
+	<a href="signup">Sign up</a>        <br>
     <c:if test="${param.error != null}">        
         <p>
             Invalid username and password.
@@ -22,15 +42,15 @@
             You have been logged out.
         </p>
     </c:if>
-    <p>
+   <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" id="username" name="username"/>	
-    </p>
+        <input type="text" class="form-control" id="username" name="username"/>	
+    </div>
     <p>
         <label for="password">Password</label>
-        <input type="password" id="raw_password" name="raw_password"/>	
+        <input type="password" class="form-control" id="raw_password" name="raw_password"/>	
     </p>
-    <input type="text" id="password" name="password"/>	
+    <input type="text" id="password" hidden="true" name="password"/>	
     <input type="hidden"                        
         name="${_csrf.parameterName}"
         value="${_csrf.token}"/>

@@ -26,6 +26,8 @@ public class User
 
     private String password;
 
+    private String plainPass;
+
     private String firstName;
 
     private String lastName;
@@ -126,6 +128,16 @@ public class User
             roles = new HashSet<String>();
         }
         roles.add( role );
+    }
+
+    public String getPlainPass()
+    {
+        return plainPass;
+    }
+
+    public void setPlainPass( String plainPass )
+    {
+        this.plainPass = plainPass;
     }
 
 }

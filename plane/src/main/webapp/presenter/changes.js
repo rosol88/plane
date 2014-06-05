@@ -1,8 +1,12 @@
 var historyManager=new CfgHistory();
 $( window ).load(function() {
 	
-	//$('#myModal').modal();
+	$('#myModal').modal();
 	$('#cfgSave').on('click',function(){
+		
+		if(!$( "#cfgFrom" ).valid()){
+			return;
+		}
 		var inputs=$('.modal-body input');
 		var cfg={};
 		for(var i=0;i<inputs.length;i++){
@@ -10,8 +14,8 @@ $( window ).load(function() {
 		}
 		cfg.date=new Date();
 		historyManager.add(cfg);
-		resetSim();
-		initPlaneParameters(cfg);
+		//resetSim();
+		//initPlaneParameters(cfg);
 		$('#myModal').modal('hide');
 		startAnimation();
 	});
@@ -30,16 +34,30 @@ $( window ).load(function() {
 	$('#sideViewBtn').on('click',function(){
 		sideView();
 	});
-//	$('#resetBtn').on('click',function(){
-//		resetSim();
-//	});
+	$('#documentationBtn').on('click',function(){
+		window.location='/Documentation/documentation';
+	});
 	$('#historyCmb').on('focus',function(){
 		historyManager.loadCombo($('#historyCmb'));
 	});
 	$('#allHistoryCmb').on('focus',function(){
 		historyManager.loadAll($('#allHistoryCmb'));
 	});
+	$('#logoutBtn').on('click',function(){
+		window.location='logout';
+	});
+	$('#cfgBtn').on('click',function(){
+		window.location.reload();
+	});
 	$('#allHistoryCmb').on('change',onCfgSelect);
+	$('#historyCmb').on('change',onCfgSelect);
+		
+//	$( "#cfgFrom" ).validate({
+//	  rules: {
+//
+//	  }
+//	});
+	
 });
 
 function resetSim(){
@@ -95,6 +113,22 @@ function sideView(){
 function initPlaneParameters(cfg){
 	if(!$.isEmptyObject(cfg.velX)){
 		plane.vel.x=parseFloat(cfg.velX);
+	}
+	if(!$.isEmptyObject(cfg.velY)){
+		plane.vel.y=parseFloat(cfg.velY);
+	}
+	if(!$.isEmptyObject(cfg.velZ)){
+		plane.vel.z=parseFloat(cfg.velZ);
+	}
+	
+	if(!$.isEmptyObject(cfg.posX)){
+		plane.pos.x=parseFloat(cfg.posX);
+	}
+	if(!$.isEmptyObject(cfg.posY)){
+		//plane.pos.y=parseFloat(cfg.posY);
+	}
+	if(!$.isEmptyObject(cfg.posZ)){
+		plane.pos.z=parseFloat(cfg.posZ);
 	}
 }
 var stopAnimation=true;
